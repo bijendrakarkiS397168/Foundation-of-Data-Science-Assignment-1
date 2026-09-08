@@ -1,0 +1,48 @@
+# Method and assignment coverage
+
+## Analytic question
+
+Within FIFA World Cup 2026 groups, is taking more shots associated with higher shot accuracy?
+
+Shot volume is the provider's total shots for one team in a match. Shot accuracy is the percentage of those shots recorded on target: `100 × shots_on_target / shots`. A value of 25 means 25%, not 0.25. This is accuracy, not goal conversion.
+
+## Keep all observations
+
+The group stage contains 72 matches and 144 team-match observations. No exclusion, random subsampling or missing-value imputation is used. Netherlands–Japan and Austria–Jordan have equal shot totals; both sides of each remain in the analysis. They do not receive a fictional zero difference or zero accuracy.
+
+The earlier task compared higher-volume minus lower-volume accuracy and then tested group mean differences. That required excluding equal-volume matches. In response to the user's no-exclusions instruction on 8 September 2026, the statistic was changed to a slope of accuracy against shot volume within each group. It answers the same broad quantity-versus-accuracy topic but a different precise question. This change occurred after the previous results were available; it is a revised/exploratory analysis.
+
+## Wrangling and inference
+
+The source has decorative rows, multirow headings and later knockout sections. The parser checks the group-stage heading and column positions, extracts only its dated rows and stops at the section boundary. It selects date, teams, shots and shots on target. All counts must be integers with `0 ≤ shots_on_target ≤ shots`. Every team must have three matches. Complete four-team fixture components define twelve groups; their G01–G12 labels are internal identifiers.
+
+For each group g, fit `accuracy = a_g + b_g × shots` to its twelve observations. The slope is calculated as:
+
+`b_g = sum((shots − mean_shots) × (accuracy − mean_accuracy)) / sum((shots − mean_shots)^2)`.
+
+Each observation receives equal weight. Counts tied between opponents are allowed and have their actual values in the fit. Grouping retains the dependence of repeated appearances and opponents within a group. Within-group regression standard errors and p-values are not used.
+
+The twelve slopes form one sample. All groups receive equal weight. Let b̄ be their mean and s their sample SD. Test H0: μ_b = 0 against H1: μ_b ≠ 0, with alpha 0.05:
+
+`t = b̄ / (s / sqrt(12))`, with 11 degrees of freedom.
+
+The 95% confidence interval is `b̄ ± t_(0.975,11) × s / sqrt(12)`. Units are **percentage points of accuracy per additional shot**. The average slope describes association, not what would happen if a team were made to shoot more.
+
+## Population and sampling limitation
+
+This is a census of the source's 2026 group-stage frame, not a probability sample. Its observed mean slope has no sampling uncertainty for that finite frame. The t-test and confidence interval require a model in which the twelve groups are approximately independent, exchangeable realisations of comparable groups. A seeded draw and shared tournament conditions weaken that assumption. Twelve slopes provide limited information; do not claim that 144 rows establish large-sample independence.
+
+Accuracy is a bounded ratio whose precision varies with shot count. Each slope has only twelve observations. Within-group variation can reflect team quality, opponents and game state, not a causal effect. Inspect the slope distribution and Q–Q plot. Shapiro–Wilk cannot establish normality with this small sample. Bootstrap and sign-flip checks do not remove these limitations.
+
+## Objective 1 mapping
+
+| Required skill | Programming evidence |
+|---|---|
+| Analytic question formulation | Question and hypotheses above |
+| Data wrangling | Published-sheet parsing and field mapping in src/data.py |
+| Preparation and sampling | Complete-frame coverage, group construction, 144 retained observations; census limitation |
+| Descriptive statistics | Per-observation summaries and group slopes |
+| Confidence interval | 95% one-sample t interval for mean group slope |
+| One-sample or two-sample t-test | Two-sided one-sample t-test on twelve slopes |
+
+An additional four-task Bonferroni p-value is reported for team integration. This task does not recompute the other members' tests or their Holm adjustment. The 95% interval is not simultaneous across four tests.
