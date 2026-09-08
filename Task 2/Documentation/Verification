@@ -1,0 +1,12 @@
+# Verification record
+
+8 September 2026 (Darwin).
+
+- The existing RUN_TASK2.py was executed and reproduced its previous 70-match difference analysis.
+- Following the user's no-exclusions request, the separate Task 2-only package was executed using all 72 matches and 144 team-match observations.
+- Direct published-source export matched all 288 shot counts and shots-on-target counts in the prior capture.
+- Nine automated tests passed: exact accuracy ratios, all-match retention, both tied-volume matches retained, source agreement, known slope with ties, invariance to opponent ordering, invalid-count rejection, duplicate-fixture rejection, zero-shot handling, and t-test/CI verification (some tests cover multiple checks).
+- The generated group-slope figure was visually inspected.
+- requirements-tested.txt records the exact main library versions used. The JSON output records Python and package versions as well as the data hash.
+
+The tests establish calculation and extraction consistency, not full independent certification of the source provider's event data. Inference assumptions are explained in METHOD.md.
