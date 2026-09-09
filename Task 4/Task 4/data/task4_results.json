@@ -1,0 +1,59 @@
+{
+  "task": "Task 4 - finishing against expected goals",
+  "author": "Kalyan Acharya",
+  "focal_point": "finishing relative to chance quality (goals against xG)",
+  "run_date": "2026-09-09",
+  "alpha": 0.05,
+  "seed": 7,
+  "benchmark": 0.0,
+  "population_N": 144,
+  "sampling": "simple random sampling without replacement",
+  "sample_n": 100,
+  "sample_mean_goals": 1.5,
+  "sample_mean_xg": 1.2918,
+  "test": {
+    "n": 100.0,
+    "mean": 0.2082,
+    "sd": 1.0366,
+    "ci_low": 0.0025,
+    "ci_high": 0.4139,
+    "t": 2.0086,
+    "df": 99.0,
+    "p": 0.0473,
+    "d": 0.2009
+  },
+  "ci_95_population_mean": [
+    0.0025,
+    0.4139
+  ],
+  "population_mean_actual": 0.206,
+  "ci_covers_population_mean": true,
+  "shapiro_p": 0.1306,
+  "wilcoxon_p": 0.08158471396271917,
+  "bootstrap_ci_95": [
+    0.0099,
+    0.4066
+  ],
+  "census_sensitivity": {
+    "n": 144.0,
+    "mean": 0.206,
+    "sd": 1.0492,
+    "ci_low": 0.0332,
+    "ci_high": 0.3789,
+    "t": 2.3567,
+    "df": 143.0,
+    "p": 0.0198,
+    "d": 0.1964
+  },
+  "repeat_sampling_reject_rate": 0.477,
+  "achieved_power": 0.5116,
+  "min_detectable_d_80pct": 0.2829,
+  "min_detectable_goals_80pct": 0.2933,
+  "bonferroni_p_4_tasks": 0.189231,
+  "decision": "reject H0",
+  "data_sha256": "5b3420416acaf1cd65b8beec80eef4f06e99ead9c89135a000ed38be8609cb1b",
+  "python": "3.10.7",
+  "pandas": "2.3.3",
+  "numpy": "2.2.6",
+  "scipy": "1.15.3"
+}

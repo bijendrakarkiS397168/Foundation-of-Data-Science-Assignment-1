@@ -1,0 +1,13 @@
+check,passed,detail
+source file hash matches the recorded export,True,5b3420416acaf1cd...
+72 group-stage fixtures,True,72 fixtures
+144 team-match observations,True,144 rows
+48 distinct teams,True,48 teams
+every team played exactly 3 group matches,True,values: [3]
+goals are non-negative integers,True,range 0-7
+xG values are positive and finite,True,range 0.05-4.60
+no missing values in the analysis columns,True,none found
+finishing equals goals minus xG,True,holds for all rows
+shots on target never exceed shots,True,holds for all rows
+no team appears twice in one fixture,True,holds for all rows
+every fixture contributes exactly two rows,True,72 fixtures
