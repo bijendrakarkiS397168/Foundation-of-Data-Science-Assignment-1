@@ -1,0 +1,12 @@
+check,passed,detail
+source file hash matches the recorded export,True,5b3420416acaf1cd...
+72 group-stage fixtures,True,72 fixtures
+144 team-match observations,True,144 rows
+48 distinct teams,True,48 teams
+every team played exactly 3 group matches,True,values: [3]
+32 qualified and 16 eliminated,True,32 / 16
+card counts are non-negative integers,True,range 0-5
+no missing values in the analysis columns,True,none found
+shots on target never exceed shots,True,holds for all rows
+no team appears twice in one fixture,True,holds for all rows
+team yellow totals reconstruct the fixture totals,True,178 cards
